@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server": "env-cmd node server.js"
+    "server": "env-cmd node api/index.js"
   },
   "keywords": [],
   "author": "",
