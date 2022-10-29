@@ -2,7 +2,7 @@ const http = require("http");
 
 const webdisHost = process.env.WEBDIS_HOST;
 const webdisPort = process.env.WEBDIS_PORT;
-const serverPort = process.env.SERVER_PORT;
+const apiPort = process.env.API_PORT;
 const server = http.createServer();
 
 async function getClients() {
@@ -45,4 +45,4 @@ server.on("request", async (req, res) => {
   res.end();
 });
 
-server.listen(serverPort);
+server.listen(apiPort);

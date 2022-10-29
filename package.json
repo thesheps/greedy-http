@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server": "env-cmd node api/index.js"
+    "api": "env-cmd node api/index.js",
+    "ui": "env-cmd npx serve -l $UI_PORT ui"
   },
   "keywords": [],
   "author": "",

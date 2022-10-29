@@ -1,14 +1,25 @@
 version: "3.8"
 
 services:
-  web:
+  api:
     image: node:18-alpine
-    container_name: greedy-http-web
+    container_name: greedy-http-api
     env_file: .env
     working_dir: /app
-    command: npm run server
+    command: npm run api
     ports:
-      - "$SERVER_PORT:$SERVER_PORT"
+      - "$API_PORT:$API_PORT"
+    volumes:
+      - ${PWD}:/app
+
+  ui:
+    image: node:18-alpine
+    container_name: greedy-http-ui
+    env_file: .env
+    working_dir: /app
+    command: npm run ui
+    ports:
+      - "$UI_PORT:$UI_PORT"
     volumes:
       - ${PWD}:/app
 
