@@ -4,12 +4,16 @@
   "description": "",
   "scripts": {
     "api": "env-cmd node api/index.js",
-    "ui": "env-cmd npx serve -l $UI_PORT ui"
+    "ui": "env-cmd npx serve -l 3001 ui",
+    "start": "npm run api & npm run ui"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "env-cmd": "^10.1.0"
+  },
+  "dependencies": {
+    "ws": "^8.10.0"
   }
 }

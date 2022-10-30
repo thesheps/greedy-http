@@ -1,7 +1,6 @@
-async function getClients() {
-  const clientsResponse = await fetch(`http://localhost:7379/GET/clients`);
-  const clientsText = await clientsResponse.text();
-  console.log(JSON.parse(clientsText));
-}
+const webSocket = new WebSocket("ws://localhost:3002/");
 
-getClients();
+webSocket.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+  console.log(data);
+};

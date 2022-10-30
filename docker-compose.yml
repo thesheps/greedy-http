@@ -3,30 +3,12 @@ version: "3.8"
 services:
   api:
     image: node:18-alpine
-    container_name: greedy-http-api
     env_file: .env
     working_dir: /app
-    command: npm run api
-    ports:
-      - "$API_PORT:$API_PORT"
-    volumes:
-      - ${PWD}:/app
-
-  ui:
-    image: node:18-alpine
-    container_name: greedy-http-ui
-    env_file: .env
-    working_dir: /app
-    command: npm run ui
+    command: npm start
     ports:
       - "$UI_PORT:$UI_PORT"
+      - "$API_PORT:$API_PORT"
+      - "$WEBSOCKET_PORT:$WEBSOCKET_PORT"
     volumes:
       - ${PWD}:/app
-
-  webdis:
-    image: anapsix/webdis
-    container_name: greedy-http-webdis
-    env_file: .env
-    ports:
-      - $WEBDIS_PORT
-      - "$WEBDIS_PORT:$WEBDIS_PORT"
