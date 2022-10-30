@@ -1,19 +1,21 @@
 {
   "name": "greedy-http",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "api": "env-cmd node api/index.js",
-    "ui": "env-cmd npx serve -l 3001 ui",
-    "start": "npm run api & npm run ui"
-  },
+  "description": "A curiously simple http interceptor",
   "keywords": [],
-  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "env-cmd": "^10.1.0"
+  "author": "thesheps@gmail.com",
+  "bin": {
+    "greedy-http": "bin/index.js"
+  },
+  "scripts": {
+    "start": "env-cmd node server.js"
   },
   "dependencies": {
+    "node-static": "^0.7.11",
     "ws": "^8.10.0"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }
