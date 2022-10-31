@@ -9,7 +9,7 @@
     "greedy-http": "bin/index.js"
   },
   "scripts": {
-    "start": "env-cmd node server.js"
+    "start": "env-cmd node index.js"
   },
   "dependencies": {
     "node-static": "^0.7.11",
