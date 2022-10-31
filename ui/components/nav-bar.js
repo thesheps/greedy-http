@@ -21,10 +21,13 @@ class NavBar extends LitElement {
 
   render() {
     const brand = html`<ul>
-      <li>
-        <h1><a href="/">greedy-http</a></h1>
-      </li>
-    </ul>`;
+        <li>
+          <h1><a href="/">greedy-http</a></h1>
+        </li>
+      </ul>
+      <ul>
+        <li>I'm listening...</li>
+      </ul>`;
 
     return html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
   }
