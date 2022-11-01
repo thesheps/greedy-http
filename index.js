@@ -1,2 +1,2 @@
-const server = require("./server");
-server.run();
+require("./api").run();
+require("./ui").run();

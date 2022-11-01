@@ -22,20 +22,40 @@ class RequestLister extends LitElement {
     `,
   ];
 
+  async handleClick(i) {
+    window.dispatchEvent(new CustomEvent("view-details", { detail: { i } }));
+  }
+
   render() {
     const requests = JSON.parse(localStorage.getItem("requests"));
     const requestsHtml = (requests ?? []).map(
-      (r) =>
-        html`<li>
-          ${new Date(r.timestamp).toUTCString()} - ${r.remoteAddress}
-        </li>`
+      (r, i) =>
+        html`<tr>
+          <td>${new Date(r.timestamp).toUTCString()}</td>
+          <td>${r.remoteAddress}</td>
+          <td>${r.path}</td>
+          <td>
+            <a href="#" @click="${() => this.handleClick(i)}"
+              >View details...</a
+            >
+          </td>
+        </tr>`
     );
 
     const lister = html`<div>
       <h2>Requests</h2>
-      <ul>
-        ${requestsHtml}
-      </ul>
+      <table role="grid">
+        <thead>
+          <th scope="col">Timestamp</th>
+          <th scope="col">IP address</th>
+          <th scope="col">Path</th>
+          <th scope="col"></th>
+        </thead>
+
+        <tbody>
+          ${requestsHtml}
+        </tbody>
+      </table>
     </div>`;
 
     return html`<aside>

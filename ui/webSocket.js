@@ -5,6 +5,5 @@ webSocket.onmessage = (event) => {
   requests.push(JSON.parse(event.data));
 
   localStorage.setItem("requests", JSON.stringify(requests));
-
   window.dispatchEvent(new CustomEvent("request-received"));
 };

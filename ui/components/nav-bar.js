@@ -16,6 +16,14 @@ class NavBar extends LitElement {
       a {
         color: white;
       }
+      .shimmer {
+        text-color: radial-gradient(
+          circle,
+          rgba(18, 25, 31, 1) 0%,
+          rgba(15, 38, 48, 1) 100%,
+          rgba(0, 212, 255, 1) 100%
+        );
+      }
     `,
   ];
 
@@ -26,7 +34,7 @@ class NavBar extends LitElement {
         </li>
       </ul>
       <ul>
-        <li>I'm listening...</li>
+        <li class="shimmer">I'm listening...</li>
       </ul>`;
 
     return html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
