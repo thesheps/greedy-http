@@ -19,6 +19,9 @@ class RequestLister extends LitElement {
       a {
         color: white;
       }
+      tr.request:hover {
+        background-color: #73828B;
+      }
     `,
   ];
 
@@ -30,15 +33,10 @@ class RequestLister extends LitElement {
     const requests = JSON.parse(localStorage.getItem("requests"));
     const requestsHtml = (requests ?? []).map(
       (r, i) =>
-        html`<tr>
+        html`<tr class="request" @click="${() => this.handleClick(i)}">
           <td>${new Date(r.timestamp).toUTCString()}</td>
           <td>${r.remoteAddress}</td>
           <td>${r.path}</td>
-          <td>
-            <a href="#" @click="${() => this.handleClick(i)}"
-              >View details...</a
-            >
-          </td>
         </tr>`
     );
 
@@ -49,7 +47,6 @@ class RequestLister extends LitElement {
           <th scope="col">Timestamp</th>
           <th scope="col">IP address</th>
           <th scope="col">Path</th>
-          <th scope="col"></th>
         </thead>
 
         <tbody>

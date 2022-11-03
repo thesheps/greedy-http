@@ -55,6 +55,7 @@ class RequestDetails extends LitElement {
     >`;
 
     return html`<aside>
+      <h2>Details</h2>
       <nav id="request-details" class="container-fluid">${details}</nav>
     </aside>`;
   }
