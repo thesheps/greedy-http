@@ -14,10 +14,10 @@ Although the app is split into 2 halves (api and ui), you can get going with thi
 $ npx greedy-http
 ```
 
-We also provide a `docker` image courtesy of `ghcr.io`:
+We also provide a `docker` image courtesy of `ghcr.io` and `docker.io`:
 
 ```bash
-$ docker run -it -p 3000:3000 -p 3001:3001 -p 3002:3002 greedy-http 
+$ docker run -it -p 3000:3000 -p 3001:3001 -p 3002:3002 thesheps/greedy-http 
 ```
 
 This will spin the Api, UI and Websocket service up:
@@ -58,4 +58,4 @@ $ npx greedy-http --help
     -w, --wsPort <n>   The local websocket port (defaults to 3002)
 ```
 
-There's a `docker-compose` at the root of this repo that you can also use as a reference!
+There's a `docker-compose` at the root of this repo that you can also use as a reference, if that bakes your noodle!
