@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start:local": "env-cmd node index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo 'Yes, yes. Tests.'"
   },
   "dependencies": {
     "args": "^5.0.3",
