@@ -13,3 +13,4 @@ jobs:
         with:
           image_name: ${{ github.repository }}
           github_token: ${{ secrets.GHCR_TOKEN }}
+          docker_io_token: ${{ secrets.DOCKER_IO_TOKEN }}
