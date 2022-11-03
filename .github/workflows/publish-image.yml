@@ -1,11 +1,13 @@
 name: Build and publish to ghcr.io
+
+on: push
+
 jobs:
   docker_publish:
     runs-on: "ubuntu-20.04"
 
     steps:
       - uses: actions/checkout@v2
-
       - name: Build and publish a Docker image for ${{ github.repository }}
         uses: macbre/push-to-ghcr@master
         with:
