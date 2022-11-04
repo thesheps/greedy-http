@@ -8,17 +8,32 @@ function run(apiPort, wsPort) {
 
   http
     .createServer(async (req, res) => {
-      const payload = JSON.stringify({
+      const payload = {
         timestamp: new Date().getTime(),
         remoteAddress: req.socket.remoteAddress,
         headers: req.headers,
+        method: req.method,
         path: req.url,
-      });
+      };
 
-      wsServer.clients.forEach((client) => client.send(payload));
+      if (req.method === "POST") {
+        var body = "";
+        req.on("data", function (chunk) {
+          body += chunk;
+        });
 
-      res.statusCode = 200;
-      res.end();
+        req.on("end", function () {
+          wsServer.clients.forEach((client) =>
+            client.send(JSON.stringify({ ...payload, body }))
+          );
+        });
+
+        res.statusCode = 200;
+        res.end();
+      } else {
+        res.statusCode = 200;
+        res.end();
+      }
     })
     .listen(apiPort);
 

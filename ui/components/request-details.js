@@ -5,10 +5,10 @@ class RequestDetails extends LitElement {
   constructor() {
     super();
 
-    this.requestIndex = 0;
+    this.selectedRequestIndex = null;
 
     window.addEventListener("view-details", async (e) => {
-      this.requestIndex = e.detail.i;
+      this.selectedRequestIndex = e.detail.selectedRequestIndex;
       this.requestUpdate();
     });
   }
@@ -22,41 +22,59 @@ class RequestDetails extends LitElement {
       a {
         color: white;
       }
+      .request-details {
+        max-height: calc(100vh - 600px);
+        overflow-y: scroll;
+      }
     `,
   ];
 
   render() {
-    const request = JSON.parse(localStorage.getItem("requests"))[
-      this.requestIndex
-    ];
+    const requests = JSON.parse(localStorage.getItem("requests"));
+    const request = (requests && requests[this.selectedRequestIndex]) || {
+      headers: [],
+      body: "",
+    };
 
     const headers = (Object.keys(request.headers) ?? []).map(
-      (h) =>
+      (key) =>
         html`<tr>
-          <td>${h}</td>
-          <td>${request.headers[h]}</td>
-        </tr> `
+          <td>${key}</td>
+          <td>${request.headers[key]}</td>
+        </tr>`
     );
 
-    const details = html`<small
+    const headerDetails = html`<small
       ><details>
         <summary>Headers</summary>
-        <table role="grid">
-          <thead>
-            <th>Key</th>
-            <th>Value</th>
-          </thead>
 
-          <tbody>
-            ${headers}
-          </tbody>
-        </table>
+        <div class="request-details">
+          <table role="grid">
+            <thead>
+              <th>Key</th>
+              <th>Value</th>
+            </thead>
+
+            <tbody>
+              ${headers}
+            </tbody>
+          </table>
+        </div>
+      </details></small
+    >`;
+
+    const bodyDetails = html`<small
+      ><details>
+        <summary>Body</summary>
+
+        <div class="request-details">${request.body}</div>
       </details></small
     >`;
 
     return html`<aside>
       <h2>Details</h2>
-      <nav id="request-details" class="container-fluid">${details}</nav>
+      <nav class="container-fluid">${headerDetails}</nav>
+      <nav class="container-fluid">${bodyDetails}</nav>
     </aside>`;
   }
 }
