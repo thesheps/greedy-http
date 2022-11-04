@@ -22,6 +22,9 @@ class RequestLister extends LitElement {
         color: white;
       }
       tr.request:hover {
+        background-color: #43525b !important;
+      }
+      tr.selected-request {
         background-color: #73828b !important;
       }
       #request-lister {
@@ -33,6 +36,8 @@ class RequestLister extends LitElement {
 
   async handleClick(i) {
     this.selectedRequestIndex = i;
+    this.requestUpdate();
+
     window.dispatchEvent(
       new CustomEvent("view-details", { detail: { selectedRequestIndex: i } })
     );
@@ -42,7 +47,11 @@ class RequestLister extends LitElement {
     const requests = JSON.parse(localStorage.getItem("requests"));
     const requestsHtml = (requests ?? []).map(
       (r, i) =>
-        html`<tr class="${"request"}" @click="${() => this.handleClick(i)}">
+        html`<tr
+          class="${(this.selectedRequestIndex == i && "selected-request") ||
+          "request"}"
+          @click="${() => this.handleClick(i)}"
+        >
           <td>${new Date(r.timestamp).toUTCString()}</td>
           <td>${r.remoteAddress}</td>
           <td>${r.method}</td>
