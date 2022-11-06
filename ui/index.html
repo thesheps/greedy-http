@@ -2,7 +2,10 @@
 <html>
   <head>
     <link rel="stylesheet" href="/styles/pico-bootstrap-grid.min.css" />
-    <script type="application/javascript" src="/services/web-socket.js"></script>
+    <script
+      type="application/javascript"
+      src="/services/web-socket.js"
+    ></script>
   </head>
 
   <body>
@@ -18,11 +21,6 @@
     </style>
 
     <script type="module" src="/components/index.js"></script>
-    <nav-bar></nav-bar>
-
-    <div class="grid">
-      <request-lister></request-lister>
-      <request-details></request-details>
-    </div>
+    <greedy-http></greedy-http>
   </body>
 </html>

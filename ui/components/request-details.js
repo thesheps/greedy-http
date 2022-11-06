@@ -26,6 +26,9 @@ class RequestDetails extends LitElement {
         max-height: calc(100vh - 600px);
         overflow-y: scroll;
       }
+      .centered {
+        text-align: center;
+      }
     `,
   ];
 
@@ -72,8 +75,8 @@ class RequestDetails extends LitElement {
       </div>
       <div class="container-fluid">${bodyDetails}</div>`;
 
-    const emptyRequest = html`<div class="container-fluid">
-      <i>Please select a request...</i>
+    const emptyRequest = html`<div class="container-fluid centered">
+      <i><h4>👈 Please select a request...</h4></i>
     </div>`;
 
     return html`<aside>
