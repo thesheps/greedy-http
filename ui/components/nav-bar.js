@@ -1,9 +1,13 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
+
 import styles from "../../styles/styles.js";
+import Store from "../services/store.js";
 
 class NavBar extends LitElement {
   constructor() {
     super();
+
+    this.store = new Store();
   }
 
   static styles = [
@@ -34,7 +38,9 @@ class NavBar extends LitElement {
         </li>
       </ul>
       <ul>
-        <li class="shimmer">I'm listening...</li>
+        <li class="shimmer">
+          <strong>Listening on: </strong>${this.store.apiUrl}
+        </li>
       </ul>`;
 
     return html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
