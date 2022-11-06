@@ -1,13 +1,12 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store.js";
+import Store from "../services/store-service.js";
+import WebSocketService from "../services/web-socket-service.js";
 
 class NavBar extends LitElement {
   constructor() {
     super();
-
-    this.store = new Store();
   }
 
   static styles = [
@@ -31,19 +30,31 @@ class NavBar extends LitElement {
     `,
   ];
 
+  async handleClick() {
+    WebSocketService.disconnect();
+  }
+
   render() {
-    const brand = html`<ul>
+    const notListening = html`<li>
+      <strong>Not listening...</strong>
+    </li>`;
+
+    const listening = html`<li class="shimmer">
+        <strong>Listening on: </strong>${Store.apiUrl}
+      </li>
+      <li><a href="#" @click=${this.handleClick}>Disconnect</a></li>`;
+
+    const contents = html`<ul>
         <li>
           <h1><a href="/">greedy-http</a></h1>
         </li>
       </ul>
+
       <ul>
-        <li class="shimmer">
-          <strong>Listening on: </strong>${this.store.apiUrl}
-        </li>
+        ${(Store.isConnected && listening) || notListening}
       </ul>`;
 
-    return html`<nav id="nav-bar" class="container-fluid">${brand}</nav>`;
+    return html`<nav id="nav-bar" class="container-fluid">${contents}</nav>`;
   }
 }
 

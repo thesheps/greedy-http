@@ -1,14 +1,13 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store.js";
+import Store from "../services/store-service.js";
 
 class RequestLister extends LitElement {
   constructor() {
     super();
 
     this.selectedRequestIndex = null;
-    this.store = new Store();
 
     window.addEventListener("request-received", async (e) => {
       this.requestUpdate();
@@ -47,8 +46,7 @@ class RequestLister extends LitElement {
   }
 
   render() {
-    const requests = this.store.requests;
-    const requestsHtml = (requests ?? []).map(
+    const requestsHtml = (Store.requests ?? []).map(
       (r, i) =>
         html`<tr
           class="${(this.selectedRequestIndex == i && "selected-request") ||
