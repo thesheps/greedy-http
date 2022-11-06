@@ -45,36 +45,40 @@ class RequestDetails extends LitElement {
     );
 
     const headerDetails = html`<small
-      ><details>
-        <summary>Headers</summary>
+      ><h4>Headers</h4>
 
-        <div class="request-details">
-          <table role="grid">
-            <thead>
-              <th>Key</th>
-              <th>Value</th>
-            </thead>
+      <div class="request-details">
+        <table role="grid">
+          <thead>
+            <th>Key</th>
+            <th>Value</th>
+          </thead>
 
-            <tbody>
-              ${headers}
-            </tbody>
-          </table>
-        </div>
-      </details></small
-    >`;
+          <tbody>
+            ${headers}
+          </tbody>
+        </table>
+      </div>
+    </small>`;
 
     const bodyDetails = html`<small
-      ><details>
-        <summary>Body</summary>
-
+      ><h4>Body</h4>
         <div class="request-details">${request.body}</div>
       </details></small
     >`;
 
+    const requestDetails = html`<div class="container-fluid">
+        ${headerDetails}
+      </div>
+      <div class="container-fluid">${bodyDetails}</div>`;
+
+    const emptyRequest = html`<div class="container-fluid">
+      <i>Please select a request...</i>
+    </div>`;
+
     return html`<aside>
       <h2>Details</h2>
-      <nav class="container-fluid">${headerDetails}</nav>
-      <nav class="container-fluid">${bodyDetails}</nav>
+      ${(this.selectedRequestIndex === null && emptyRequest) || requestDetails}
     </aside>`;
   }
 }

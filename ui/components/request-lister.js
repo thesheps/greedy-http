@@ -59,7 +59,7 @@ class RequestLister extends LitElement {
         </tr>`
     );
 
-    const lister = html`<div>
+    const lister = html`<small>
       <h2>Requests</h2>
       <div id="request-lister">
         <table role="grid">
@@ -75,7 +75,7 @@ class RequestLister extends LitElement {
           </tbody>
         </table>
       </div>
-    </div>`;
+    </small>`;
 
     return html`<aside>
       <nav class="container-fluid">${lister}</nav>
