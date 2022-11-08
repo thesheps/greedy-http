@@ -1,7 +1,8 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store-service.js";
+import EventService from "../services/event-service.js";
+import StoreService from "../services/store-service.js";
 
 class RequestDetails extends LitElement {
   constructor() {
@@ -9,7 +10,7 @@ class RequestDetails extends LitElement {
 
     this.selectedRequestIndex = null;
 
-    window.addEventListener("view-details", async (e) => {
+    EventService.ViewDetails.subscribe((e) => {
       this.selectedRequestIndex = e.detail.selectedRequestIndex;
       this.requestUpdate();
     });
@@ -35,8 +36,8 @@ class RequestDetails extends LitElement {
   ];
 
   render() {
-    const request = (Store.requests &&
-      Store.requests[this.selectedRequestIndex]) || {
+    const request = (StoreService.requests &&
+      StoreService.requests[this.selectedRequestIndex]) || {
       headers: [],
       body: "",
     };

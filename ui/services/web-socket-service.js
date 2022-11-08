@@ -1,27 +1,28 @@
-import Store from "./store-service.js";
+import EventService from "./event-service.js";
+import StoreService from "./store-service.js";
 
 export default class WebSocketService {
   static connect() {
-    WebSocketService.webSocket = new WebSocket(Store.apiUrl);
+    WebSocketService.webSocket = new WebSocket(StoreService.apiUrl);
 
     WebSocketService.webSocket.onmessage = (event) => {
-      Store.addRequest(JSON.parse(event.data));
-      window.dispatchEvent(new CustomEvent("request-received"));
+      StoreService.addRequest(JSON.parse(event.data));
+      EventService.RequestReceived.publish();
     };
 
     WebSocketService.webSocket.onopen = () => {
-      Store.isConnected = true;
-      window.dispatchEvent(new CustomEvent("connection-opened"));
+      StoreService.isConnected = true;
+      EventService.ConnectionOpened.publish();
     };
 
     WebSocketService.webSocket.onclose = () => {
-      Store.isConnected = false;
-      window.dispatchEvent(new CustomEvent("connection-closed"));
+      StoreService.isConnected = false;
+      EventService.ConnectionClosed.publish();
     };
   }
 
   static disconnect() {
-    Store.isConnected = false;
+    StoreService.isConnected = false;
     WebSocketService.webSocket.close();
   }
 }

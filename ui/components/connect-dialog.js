@@ -1,7 +1,7 @@
 import { html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store-service.js";
+import StoreService from "../services/store-service.js";
 import WebSocketService from "../services/web-socket-service.js";
 
 class ConnectDialog extends LitElement {
@@ -16,7 +16,7 @@ class ConnectDialog extends LitElement {
   static styles = [...styles];
 
   async handleClick(i) {
-    Store.apiUrl = this.apiUrlElement.value;
+    StoreService.apiUrl = this.apiUrlElement.value;
     WebSocketService.connect();
   }
 
@@ -37,7 +37,7 @@ class ConnectDialog extends LitElement {
             id="apiUrl"
             type="text"
             placeholder="Server address"
-            value="${Store.apiUrl}"
+            value="${StoreService.apiUrl}"
           />
         </label>
 

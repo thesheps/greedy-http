@@ -1,24 +1,20 @@
 import { html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store-service.js";
+import EventService from "../services/event-service.js";
+import StoreService from "../services/store-service.js";
 import WebSocketService from "../services/web-socket-service.js";
 
 class GreedyHttp extends LitElement {
   constructor() {
     super();
 
-    if (Store.isConnected) {
+    if (StoreService.isConnected) {
       WebSocketService.connect();
     }
 
-    window.addEventListener("connection-opened", async (e) =>
-      this.requestUpdate()
-    );
-
-    window.addEventListener("connection-closed", async (e) => {
-      this.requestUpdate();
-    });
+    EventService.ConnectionOpened.subscribe(() => this.requestUpdate());
+    EventService.ConnectionClosed.subscribe(() => this.requestUpdate());
   }
 
   static styles = [...styles];
@@ -35,7 +31,7 @@ class GreedyHttp extends LitElement {
     </div>`;
 
     return (
-      (Store.isConnected &&
+      (StoreService.isConnected &&
         html`<div>
           <nav-bar></nav-bar>
           ${requests}

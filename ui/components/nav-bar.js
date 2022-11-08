@@ -1,7 +1,7 @@
 import { css, html, LitElement } from "https://unpkg.com/lit?module";
 
 import styles from "../../styles/styles.js";
-import Store from "../services/store-service.js";
+import StoreService from "../services/store-service.js";
 import WebSocketService from "../services/web-socket-service.js";
 
 class NavBar extends LitElement {
@@ -40,7 +40,7 @@ class NavBar extends LitElement {
     </li>`;
 
     const listening = html`<li class="shimmer">
-        <strong>Listening on: </strong>${Store.apiUrl}
+        <strong>Listening on: </strong>${StoreService.apiUrl}
       </li>
       <li><a href="#" @click=${this.handleClick}>Disconnect</a></li>`;
 
@@ -51,7 +51,7 @@ class NavBar extends LitElement {
       </ul>
 
       <ul>
-        ${(Store.isConnected && listening) || notListening}
+        ${(StoreService.isConnected && listening) || notListening}
       </ul>`;
 
     return html`<nav id="nav-bar" class="container-fluid">${contents}</nav>`;
