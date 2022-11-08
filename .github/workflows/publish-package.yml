@@ -1,4 +1,4 @@
-name: Build and publish to ghcr.io
+name: Publish to NPM
 
 on:
   release:
@@ -16,8 +16,6 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
-      - uses: macbre/push-to-ghcr@master
-        with:
-          image_name: ${{ github.repository }}
-          github_token: ${{ secrets.GHCR_TOKEN }}
-          docker_io_token: ${{ secrets.DOCKER_IO_TOKEN }}
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
