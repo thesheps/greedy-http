@@ -24,7 +24,6 @@ jobs:
           push_version_commit: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
           npm_token: ${{ secrets.NPM_TOKEN }}
-          - uses: JS-DevTools/npm-publish@v1
-      - run: npm publish
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
