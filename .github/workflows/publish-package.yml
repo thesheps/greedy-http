@@ -9,11 +9,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0      
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm ci
       - run: npm test
+      - uses: bcomnes/npm-bump@v2
+        with:
+          git_email: thesheps@gmail.com
+          git_username: ${{ github.actor }}
+          newversion: ${{ github.event.inputs.newversion }}
+          push_version_commit: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
+          - uses: JS-DevTools/npm-publish@v1
       - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
