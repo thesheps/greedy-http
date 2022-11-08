@@ -1,6 +1,6 @@
 {
   "name": "greedy-http",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A curiously simple http interceptor",
   "keywords": [],
   "license": "ISC",
@@ -11,7 +11,8 @@
   "scripts": {
     "start:local": "env-cmd node index.js",
     "start": "node index.js",
-    "test": "echo 'Yes, yes. Tests.'"
+    "test": "echo 'Yes, yes. Tests.'",
+    "release": "standard-version"
   },
   "dependencies": {
     "args": "^5.0.3",
@@ -19,6 +20,7 @@
     "ws": "^8.10.0"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0"
+    "env-cmd": "^10.1.0",
+    "standard-version": "^9.5.0"
   }
 }
