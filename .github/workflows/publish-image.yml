@@ -1,8 +1,6 @@
 name: Build and publish to ghcr.io
 
-on:
-  release:
-    types: [created]
+on: push
 
 jobs:
   test:
