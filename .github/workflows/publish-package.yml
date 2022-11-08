@@ -16,14 +16,7 @@ jobs:
           node-version: 16
       - run: npm ci
       - run: npm test
-      - uses: bcomnes/npm-bump@v2
-        with:
-          git_email: thesheps@gmail.com
-          git_username: ${{ github.actor }}
-          newversion: ${{ github.event.inputs.newversion }}
-          push_version_commit: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          npm_token: ${{ secrets.NPM_TOKEN }}
+      - run: npm release
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
