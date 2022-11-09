@@ -1,6 +1,6 @@
 {
   "name": "greedy-http",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A curiously simple http interceptor",
   "keywords": [],
   "license": "ISC",
