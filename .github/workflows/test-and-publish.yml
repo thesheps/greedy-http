@@ -18,7 +18,12 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run release
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
       - run: git push --follow-tags origin $(git branch)
+      - run: npm publish
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GHCR_TOKEN }}
+          docker_io_token: ${{ secrets.DOCKER_IO_TOKEN }}
