@@ -12,8 +12,7 @@
     "start:local": "env-cmd node index.js",
     "start": "node index.js",
     "test": "echo 'Yes, yes. Tests.'",
-    "release": "standard-version",
-    "prepare": "husky install"
+    "release": "standard-version"
   },
   "dependencies": {
     "args": "^5.0.3",
@@ -22,7 +21,6 @@
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "husky": "^8.0.2",
     "standard-version": "^9.5.0"
   }
 }
