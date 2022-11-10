@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/thesheps/greedy-http/compare/v1.1.0...v1.3.0) (2022-11-10)
+
+
+### Features
+
+* removes husky ([356327e](https://github.com/thesheps/greedy-http/commit/356327e569ba891e833b32e278b68e87a5d4751a))
+* uses husky for npm bumping ([678e225](https://github.com/thesheps/greedy-http/commit/678e2253fbac3769277ad1588188c86ae874ff52))
+
+
+### Bug Fixes
+
+* **ci:** adds registry-url to setup-node action ([e7cd38a](https://github.com/thesheps/greedy-http/commit/e7cd38a68326d8b98b28c33c3290b4f1e213bdc3))
+* **ci:** fixes git tag push ([f27eed1](https://github.com/thesheps/greedy-http/commit/f27eed1260515f03db992a48f0a57be916bd4d11))
+* **ci:** fixes release script ([46e0209](https://github.com/thesheps/greedy-http/commit/46e02093045277693e1026663dac0bb985f8bdb5))
+
 ## [1.2.0](https://github.com/thesheps/greedy-http/compare/v1.1.0...v1.2.0) (2022-11-09)
 
 
