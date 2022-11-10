@@ -1,0 +1,39 @@
+name: Publish to NPM
+
+on: push
+
+jobs:
+  test:
+    name: "Test & Publish 🚀"
+    runs-on: "ubuntu-20.04"
+
+    steps:
+      - name: Checkout code
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Configure remote
+      - uses: fregante/setup-git-user@v1
+      - run: git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
+      - name: Configure node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org
+
+      - name: Test & publish npm package
+      - run: npm ci
+      - run: npm test
+      - run: npm run release && git push --follow-tags origin main
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Publish docker image
+      - uses: macbre/push-to-ghcr@master
+        with:
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GHCR_TOKEN }}
+          docker_io_token: ${{ secrets.DOCKER_IO_TOKEN }}    

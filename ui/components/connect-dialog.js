@@ -41,7 +41,7 @@ class ConnectDialog extends LitElement {
           />
         </label>
 
-        <button @click="${this.handleClick}">Connect</button>
+        <button @click="${this.handleClick}">Connect!</button>
       </article>
     </dialog>`;
   }
