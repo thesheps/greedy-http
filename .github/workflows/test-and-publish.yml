@@ -23,7 +23,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run release
-      - run: git push --follow-tags gh-origin HEAD:master --force
+      - run: git push --follow-tags origin main
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
