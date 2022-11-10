@@ -14,14 +14,16 @@ jobs:
       
       - uses: fregante/setup-git-user@v1
       - run: git remote add gh-origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-      - run: git push gh-origin HEAD:master --tags 
-      
+
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org
+
       - run: npm ci
       - run: npm test
+      - run: npm release
+      - run: git push gh-origin HEAD:master --tags 
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
