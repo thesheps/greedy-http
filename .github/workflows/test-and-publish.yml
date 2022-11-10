@@ -22,7 +22,7 @@ jobs:
 
       - run: npm ci
       - run: npm test
-      - run: npm release
+      - run: npm run release
       - run: git push gh-origin HEAD:master --tags 
       - run: npm publish
         env:
